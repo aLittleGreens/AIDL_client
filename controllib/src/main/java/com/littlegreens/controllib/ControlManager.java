@@ -199,7 +199,7 @@ public class ControlManager {
                 public void run() {
                     LittleGreensUtils.setTopApp(mContext);
                     Intent intent = new Intent(IRemoteService.class.getName());
-                    intent.setPackage("com.littlegreens.aidl_sample");
+                    intent.setPackage(Const.remotePacket);
                     //注意这里的Context.BIND_AUTO_CREATE，这意味这如果在绑定的过程中，
                     //如果Service由于某种原因被Destroy了，Android还会自动重新启动被绑定的Service。
                     // 你可以点击Kill Process 杀死Service看看结果
