@@ -1,0 +1,2 @@
+include ':app', ':controllib'
+rootProject.name='AIDL_client'
