@@ -179,7 +179,7 @@ public class ControlManager {
         }
     }
 
-    public void openServerProcess() {
+    private void openServerProcess() {
         try {
             Intent intent = new Intent();
             intent.setData(Uri.parse("csd://pull.csd.demo/cyn?type=110"));
@@ -188,7 +188,7 @@ public class ControlManager {
 
             /**android.intent.action.MAIN：打开另一程序
              */
-            intent.setAction("android.intent.action.MAIN");
+            intent.setAction("android.intent.action.VIEW");
 
             mContext.startActivity(intent);
 
