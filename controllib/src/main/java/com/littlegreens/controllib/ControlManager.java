@@ -17,13 +17,14 @@ import android.widget.Toast;
 import com.littlegreens.aidl.IRemoteService;
 import com.littlegreens.aidl.IRemoteServiceCallback;
 import com.littlegreens.controllib.listener.ControlServerListener;
+import com.littlegreens.controllib.listener.OnDeviceControlCommondListener;
 
 /**
  * @author LittleGreens <a href="mailto:alittlegreens@foxmail.com">Contact me.</a>
  * @version 1.0
  * @since 2019/9/23 14:23
  */
-public class ControlManager {
+public class ControlManager implements OnDeviceControlCommondListener {
 
     private static final String TAG = "ControlManager";
     private static ControlManager mControlManager = null;
@@ -159,6 +160,7 @@ public class ControlManager {
          * to update the UI, we need to use a Handler to hop over there.
          */
         public void valueChanged(int value) {
+
             mHandler.sendMessage(mHandler.obtainMessage(BUMP_MSG, value, 0));
         }
     };
@@ -168,15 +170,17 @@ public class ControlManager {
      *
      * @param value
      */
-    public void setControlCommond(int value) {
+    public boolean setControlCommond(int value) {
         if (mService != null && mIsBound) {
             try {
                 Log.d(TAG, "setControlCommond: " + value);
                 mService.setTarget(value);
+                return true;
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     private void openServerProcess() {
@@ -207,7 +211,7 @@ public class ControlManager {
                             mConnection, Context.BIND_AUTO_CREATE);
                     mIsBound = true;
                 }
-            },50);
+            }, 50);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -215,4 +219,23 @@ public class ControlManager {
         }
     }
 
+    @Override
+    public boolean openDoor() {
+       return setControlCommond(1);
+    }
+
+    @Override
+    public boolean queryDoorStatus() {
+        return setControlCommond(2);
+    }
+
+    @Override
+    public boolean queryTemperature() {
+        return setControlCommond(3);
+    }
+
+    @Override
+    public boolean queryDeviceVersion() {
+        return setControlCommond(4);
+    }
 }
