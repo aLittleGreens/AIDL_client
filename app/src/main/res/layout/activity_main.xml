@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <Button
@@ -29,6 +29,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="杀死服务端进程"></Button>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下面是控制指令"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/openDoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开门" />
+        <Button
+            android:id="@+id/queryDoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询们状态" />
+        <Button
+            android:id="@+id/queryTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询温度" />
+        <Button
+            android:id="@+id/queryDeviceVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询机型和固件版本" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/callback"

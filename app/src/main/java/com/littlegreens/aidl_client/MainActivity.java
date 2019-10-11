@@ -17,7 +17,7 @@ import com.littlegreens.controllib.listener.ControlServerListener;
 import java.util.Random;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
 
@@ -29,15 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.bind);
-        button.setOnClickListener(mBindListener);
-        Button unbind = (Button) findViewById(R.id.unbind);
-        unbind.setOnClickListener(mUnbindListener);
-        mKillButton = (Button) findViewById(R.id.kill);
-        mKillButton.setOnClickListener(mKillListener);
-        mKillButton.setEnabled(false);
-        mCallbackText = (TextView) findViewById(R.id.callback);
-        mCallbackText.setText("Not attached.");
+        initView();
         controlManager = ControlManager.getInstance(this);
         controlManager.setOnControlServerListener(new ControlServerListener() {
             @Override
@@ -94,6 +86,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initView() {
+
+        Button button = (Button) findViewById(R.id.bind);
+        button.setOnClickListener(mBindListener);
+        Button unbind = (Button) findViewById(R.id.unbind);
+        unbind.setOnClickListener(mUnbindListener);
+        mKillButton = (Button) findViewById(R.id.kill);
+        mKillButton.setOnClickListener(mKillListener);
+        mKillButton.setEnabled(false);
+        mCallbackText = (TextView) findViewById(R.id.callback);
+        mCallbackText.setText("Not attached.");
+
+        findViewById(R.id.openDoor).setOnClickListener(this);
+        findViewById(R.id.queryDoor).setOnClickListener(this);
+        findViewById(R.id.queryTemperature).setOnClickListener(this);
+        findViewById(R.id.queryDeviceVersion).setOnClickListener(this);
+    }
+
     /**
      * 绑定
      */
@@ -132,6 +142,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         controlManager.unBindServer();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.openDoor:
+                controlManager.openDoor();
+                break;
+            case R.id.queryDoor:
+                controlManager.queryDoorStatus();
+                break;
+            case R.id.queryTemperature:
+                controlManager.queryTemperature();
+                break;
+            case R.id.queryDeviceVersion:
+                controlManager.queryDeviceVersion();
+                break;
+        }
     }
 }
 
