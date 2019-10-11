@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case FunctionType.QueryTemperature:
                         float queryTemperatureResponse = deviceBean.getQueryTemperatureResponse();
+                        if (queryTemperatureResponse == -1) {
+                            mCallbackText.setText("温度传感器异常");
+                        }
                         mCallbackText.setText("温度：" + queryTemperatureResponse + "摄氏度");
                         break;
                     case FunctionType.PersonNear:
