@@ -5,11 +5,11 @@ package com.littlegreens.controllib.bean;
  * @version 1.0
  * @since 2019/10/10 21:30
  */
-public enum FunctionType {
-    OpenDoor,//回复开门
-    QueryDoor,//回复查询门
-    QueryTemperature,//回复温度
-    PersonNear,//人体接近
-    QueryDeviceVersion //回复APP启动握手
+public class FunctionType {
+    public static final int OpenDoor = 1;//回复开门
+    public static final int QueryDoor = 2;//回复查询门
+    public static final int QueryTemperature = 3;//回复温度
+    public static final int PersonNear = 4;//人体接近
+    public static final int QueryDeviceVersion = 5; //回复APP启动握手
 
 }

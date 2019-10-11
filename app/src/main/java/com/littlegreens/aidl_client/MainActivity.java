@@ -2,13 +2,16 @@ package com.littlegreens.aidl_client;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.littlegreens.aidl.DeviceBean;
 import com.littlegreens.controllib.ControlManager;
+import com.littlegreens.controllib.bean.FunctionType;
 import com.littlegreens.controllib.listener.ControlServerListener;
 
 import java.util.Random;
@@ -54,8 +57,39 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void valueChanged(int value) {
-                mCallbackText.setText("valueChanged:" + value);
+            public void valueChanged(DeviceBean deviceBean) {
+                Log.d(TAG, "valueChanged: " + deviceBean.toString());
+                switch (deviceBean.getFunctionType()) {
+                    case FunctionType.OpenDoor:
+                        int openDoorResponse = deviceBean.getOpenDoorResponse();
+                        if (openDoorResponse == 0) {
+                            mCallbackText.setText("开门失败");
+                        } else {
+                            mCallbackText.setText("开门成功");
+                        }
+                        break;
+                    case FunctionType.QueryDoor:
+                        int queryDoorStatusResponse = deviceBean.getQueryDoorStatusResponse();
+                        if (queryDoorStatusResponse == 0) {
+                            mCallbackText.setText("开门失败");
+                        } else {
+                            mCallbackText.setText("开门成功");
+                        }
+                        break;
+                    case FunctionType.QueryTemperature:
+                        float queryTemperatureResponse = deviceBean.getQueryTemperatureResponse();
+                        mCallbackText.setText("温度：" + queryTemperatureResponse + "摄氏度");
+                        break;
+                    case FunctionType.PersonNear:
+                        mCallbackText.setText("人体靠近");
+                        break;
+                    case FunctionType.QueryDeviceVersion:
+                        int deviceTypeResponse = deviceBean.getDeviceTypeResponse();
+                        int deviceVersion = deviceBean.getDeviceVersion();
+                        mCallbackText.setText("机型:" + deviceTypeResponse + " 固件版本:" + deviceVersion);
+                        break;
+                }
+
             }
         });
     }
@@ -90,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void sendValue(View view) {
-        int value = new Random().nextInt(100);
+        int value = new Random().nextInt(2);
         controlManager.setControlCommond(value);
     }
 

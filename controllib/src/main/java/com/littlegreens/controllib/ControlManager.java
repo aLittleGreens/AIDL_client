@@ -14,8 +14,10 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.littlegreens.aidl.DeviceBean;
 import com.littlegreens.aidl.IRemoteService;
 import com.littlegreens.aidl.IRemoteServiceCallback;
+import com.littlegreens.controllib.bean.FunctionType;
 import com.littlegreens.controllib.listener.ControlServerListener;
 import com.littlegreens.controllib.listener.OnDeviceControlCommondListener;
 
@@ -41,7 +43,7 @@ public class ControlManager implements OnDeviceControlCommondListener {
                 case BUMP_MSG:
                     Log.d(TAG, "handleMessage: " + msg.arg1);
                     if (mControlServerListener != null) {
-                        mControlServerListener.valueChanged(msg.arg1);
+                        mControlServerListener.valueChanged((DeviceBean) msg.obj);
                     }
                     break;
                 default:
@@ -152,16 +154,9 @@ public class ControlManager implements OnDeviceControlCommondListener {
      * 远程回调接口实现
      */
     private IRemoteServiceCallback mCallback = new IRemoteServiceCallback.Stub() {
-        /**
-         * This is called by the remote service regularly to tell us about
-         * new values.  Note that IPC calls are dispatched through a thread
-         * pool running in each process, so the code executing here will
-         * NOT be running in our main thread like most other things -- so,
-         * to update the UI, we need to use a Handler to hop over there.
-         */
-        public void valueChanged(int value) {
-
-            mHandler.sendMessage(mHandler.obtainMessage(BUMP_MSG, value, 0));
+        @Override
+        public void valueChanged(DeviceBean deviceBean) throws RemoteException {
+            mHandler.sendMessage(mHandler.obtainMessage(BUMP_MSG,deviceBean));
         }
     };
 
@@ -221,21 +216,21 @@ public class ControlManager implements OnDeviceControlCommondListener {
 
     @Override
     public boolean openDoor() {
-       return setControlCommond(1);
+       return setControlCommond(FunctionType.OpenDoor);
     }
 
     @Override
     public boolean queryDoorStatus() {
-        return setControlCommond(2);
+        return setControlCommond(FunctionType.QueryDoor);
     }
 
     @Override
     public boolean queryTemperature() {
-        return setControlCommond(3);
+        return setControlCommond(FunctionType.QueryTemperature);
     }
 
     @Override
     public boolean queryDeviceVersion() {
-        return setControlCommond(4);
+        return setControlCommond(FunctionType.QueryDeviceVersion);
     }
 }

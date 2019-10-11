@@ -1,5 +1,7 @@
 package com.littlegreens.controllib.listener;
 
+import com.littlegreens.aidl.DeviceBean;
+
 /**
  * @author LittleGreens <a href="mailto:alittlegreens@foxmail.com">Contact me.</a>
  * @version 1.0
@@ -14,9 +16,9 @@ public interface ControlServerListener {
     /**
      * 远程服务传递的值
      *
-     * @param value
+     * @param deviceBean
      */
-    void valueChanged(int value);
+    void valueChanged(DeviceBean deviceBean);
 
 
 }
