@@ -1,4 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://repo.rdc.aliyun.com/repository/107284-release-4tIOL8/") {
+                authentication(userName: "pRpUSE", password: "G5MVL0hdiy")
+            }
+            pom.version = "1.0.1" // 对应版本号 25.1.0
+            pom.artifactId = "controllib" // 对应 appcompat-v7
+            pom.groupId = "adil.littlegreens" // com.android.support
+        }
+    }
+}
 
 android {
     compileSdkVersion 23
