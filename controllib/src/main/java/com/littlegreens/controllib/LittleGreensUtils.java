@@ -21,7 +21,7 @@ public class LittleGreensUtils {
         List<PackageInfo> installedPackages = packageManager.getInstalledPackages(0);
         for (int i = 0; i < installedPackages.size(); i++) {
             if (installedPackages.get(i).packageName.equals(Const.remotePacket)) {
-                Log.d("TAG", "onClick: " + installedPackages.get(i).packageName);
+                Log.d("TAG", "isAvilible: " + installedPackages.get(i).packageName);
                 return true;
             }
         }
@@ -54,7 +54,6 @@ public class LittleGreensUtils {
      */
     public static void setTopApp(Context context) {
 //        if (!isRunningForeground(context)) {
-            Log.d("TAG","后台");
             /**获取ActivityManager*/
             ActivityManager activityManager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
 

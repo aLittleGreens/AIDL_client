@@ -72,8 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         float queryTemperatureResponse = deviceBean.getQueryTemperatureResponse();
                         if (queryTemperatureResponse == -1) {
                             mCallbackText.setText("温度传感器异常");
+                        } else {
+                            mCallbackText.setText("温度：" + queryTemperatureResponse + "摄氏度");
                         }
-                        mCallbackText.setText("温度：" + queryTemperatureResponse + "摄氏度");
                         break;
                     case FunctionType.PersonNear:
                         mCallbackText.setText("人体靠近");
@@ -112,8 +113,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private View.OnClickListener mBindListener = new View.OnClickListener() {
         public void onClick(View v) {
-            mCallbackText.setText("Binding.");
-            controlManager.binderServer();
+            if (!controlManager.isBound()) {
+                mCallbackText.setText("Binding.");
+                controlManager.binderServer();
+            } else {
+                Log.e(TAG, "remote server already binder");
+            }
         }
     };
     /**
@@ -121,11 +126,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private View.OnClickListener mUnbindListener = new View.OnClickListener() {
         public void onClick(View v) {
-
             if (controlManager.isBound()) {
                 controlManager.unBindServer();
                 mKillButton.setEnabled(false);
-                mCallbackText.setText("Unbinding.");
+                mCallbackText.setText("Unbind.");
             }
         }
     };
@@ -149,18 +153,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        boolean isServerBinder = false;
         switch (v.getId()) {
             case R.id.openDoor:
-                controlManager.openDoor();
+                isServerBinder = controlManager.openDoor();
+                if (!isServerBinder) {
+                    Toast.makeText(this, "远程服务没有绑定，请绑定后，再发送指令", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.queryDoor:
-                controlManager.queryDoorStatus();
+                isServerBinder = controlManager.queryDoorStatus();
+                if (!isServerBinder) {
+                    Toast.makeText(this, "远程服务没有绑定，请绑定后，再发送指令", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.queryTemperature:
-                controlManager.queryTemperature();
+                isServerBinder = controlManager.queryTemperature();
+                if (!isServerBinder) {
+                    Toast.makeText(this, "远程服务没有绑定，请绑定后，再发送指令", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.queryDeviceVersion:
-                controlManager.queryDeviceVersion();
+                isServerBinder = controlManager.queryDeviceVersion();
+                if (!isServerBinder) {
+                    Toast.makeText(this, "远程服务没有绑定，请绑定后，再发送指令", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

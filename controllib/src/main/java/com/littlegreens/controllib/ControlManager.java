@@ -77,6 +77,10 @@ public class ControlManager implements OnDeviceControlCommondListener {
 
     public boolean binderServer() {
 
+        if (isBound()) {
+            Log.e(TAG, "remote server already binder");
+            return true;
+        }
         if (LittleGreensUtils.isAvilible(mContext)) {
             openServerProcess();
             return true;
@@ -117,11 +121,11 @@ public class ControlManager implements OnDeviceControlCommondListener {
 
 
     public boolean isBound() {
-        return mIsBound;
+        return mIsBound && mService != null;
     }
 
     public void unBindServer() {
-        if (mIsBound) {
+        if (isBound()) {
             if (mService != null) {
                 try {
                     mService.unregisterCallback(mCallback);
@@ -131,6 +135,7 @@ public class ControlManager implements OnDeviceControlCommondListener {
             }
             mContext.unbindService(mConnection);
             mIsBound = false;
+            mService = null;
         }
     }
 
@@ -156,7 +161,7 @@ public class ControlManager implements OnDeviceControlCommondListener {
     private IRemoteServiceCallback mCallback = new IRemoteServiceCallback.Stub() {
         @Override
         public void valueChanged(DeviceBean deviceBean) throws RemoteException {
-            mHandler.sendMessage(mHandler.obtainMessage(BUMP_MSG,deviceBean));
+            mHandler.sendMessage(mHandler.obtainMessage(BUMP_MSG, deviceBean));
         }
     };
 
@@ -216,7 +221,7 @@ public class ControlManager implements OnDeviceControlCommondListener {
 
     @Override
     public boolean openDoor() {
-       return setControlCommond(FunctionType.OpenDoor);
+        return setControlCommond(FunctionType.OpenDoor);
     }
 
     @Override
