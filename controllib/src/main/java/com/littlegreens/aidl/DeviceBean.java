@@ -121,4 +121,15 @@ public class DeviceBean implements Parcelable {
         }
     };
 
+    @Override
+    public String toString() {
+        return "DeviceBean{" +
+                "functionType=" + functionType +
+                ", openDoorResponse=" + openDoorResponse +
+                ", queryDoorStatusResponse=" + queryDoorStatusResponse +
+                ", queryTemperatureResponse=" + queryTemperatureResponse +
+                ", deviceTypeResponse=" + deviceTypeResponse +
+                ", deviceVersion=" + deviceVersion +
+                '}';
+    }
 }
