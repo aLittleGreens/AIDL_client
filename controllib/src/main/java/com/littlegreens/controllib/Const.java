@@ -7,6 +7,6 @@ package com.littlegreens.controllib;
  */
 public class Const {
 
-    public static final String remotePacket = "com.littlegreens.aidl_sample";
+    public static final String remotePacket = "com.ktxinfo.dog";
 
 }
