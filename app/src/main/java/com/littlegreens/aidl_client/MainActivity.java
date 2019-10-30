@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MainActivity";
 
-    Button mKillButton;
     TextView mCallbackText;
     private ControlManager controlManager;
 
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         controlManager.setOnControlServerListener(new ControlServerListener() {
             @Override
             public void onServiceConnected() {
-                mKillButton.setEnabled(true);
                 mCallbackText.setText("Attached.");
                 Toast.makeText(MainActivity.this, "远程服务绑定成功",
                         Toast.LENGTH_SHORT).show();
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onServiceDisconnected() {
-                mKillButton.setEnabled(false);
                 mCallbackText.setText("Disconnected.");
                 Toast.makeText(MainActivity.this, "远程服务断开连接",
                         Toast.LENGTH_SHORT).show();
@@ -96,9 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(mBindListener);
         Button unbind = (Button) findViewById(R.id.unbind);
         unbind.setOnClickListener(mUnbindListener);
-        mKillButton = (Button) findViewById(R.id.kill);
-        mKillButton.setOnClickListener(mKillListener);
-        mKillButton.setEnabled(false);
         mCallbackText = (TextView) findViewById(R.id.callback);
         mCallbackText.setText("Not attached.");
 
@@ -128,22 +122,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onClick(View v) {
             if (controlManager.isBound()) {
                 controlManager.unBindServer();
-                mKillButton.setEnabled(false);
                 mCallbackText.setText("Unbind.");
             }
         }
     };
 
-    private View.OnClickListener mKillListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            controlManager.killRemoteProcess();
-        }
-    };
-
-    public void sendValue(View view) {
-        int value = new Random().nextInt(2);
-        controlManager.setControlCommond(value);
-    }
 
     @Override
     protected void onDestroy() {

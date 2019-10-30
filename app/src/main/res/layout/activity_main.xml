@@ -12,23 +12,10 @@
         android:text="绑定"></Button>
 
     <Button
-        android:id="@+id/bt_sendValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="sendValue"
-        android:text="传值"></Button>
-
-    <Button
         android:id="@+id/unbind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="解除绑定"></Button>
-
-    <Button
-        android:id="@+id/kill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="杀死服务端进程"></Button>
 
     <TextView
         android:id="@+id/callback"
