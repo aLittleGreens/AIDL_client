@@ -38,6 +38,6 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 //    implementation(name: 'controllib-debug', ext: 'aar')
 
-    implementation project(":controllib")
-//    implementation 'adil.littlegreens:controllib:1.0.1'
+//    implementation project(":controllib")
+    implementation 'aidog.littlegreens:controllib:1.0.3'
 }

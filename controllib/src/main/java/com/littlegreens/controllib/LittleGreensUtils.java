@@ -50,7 +50,7 @@ public class LittleGreensUtils {
      * 将本应用置顶到最前端
      * 当本应用位于后台时，则将它切换到最前端
      *
-     * @param context
+     * @param context Context
      */
     public static void setTopApp(Context context) {
 //        if (!isRunningForeground(context)) {
@@ -74,7 +74,7 @@ public class LittleGreensUtils {
     /**
      * 判断本应用是否已经位于最前端
      *
-     * @param context
+     * @param context Context
      * @return 本应用已经位于最前端时，返回 true；否则返回 false
      */
     public static boolean isRunningForeground(Context context) {

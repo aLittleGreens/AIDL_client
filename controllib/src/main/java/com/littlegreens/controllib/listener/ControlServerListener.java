@@ -16,7 +16,7 @@ public interface ControlServerListener {
     /**
      * 远程服务传递的值
      *
-     * @param deviceBean
+     * @param deviceBean DeviceBean
      */
     void valueChanged(DeviceBean deviceBean);
 

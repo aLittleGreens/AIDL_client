@@ -33,7 +33,7 @@ public class ControlManager implements OnDeviceControlCommondListener {
     private Context mContext;
     private boolean mIsBound;
 
-    IRemoteService mService = null;
+    private IRemoteService mService = null;
     private static final int BUMP_MSG = 1;
 
     private Handler mHandler = new Handler(Looper.myLooper()) {
@@ -168,7 +168,8 @@ public class ControlManager implements OnDeviceControlCommondListener {
     /**
      * 发送控制命令道远程服务
      *
-     * @param value
+     * @param value value
+     * @return isSuccess
      */
     public boolean setControlCommond(int value) {
         if (mService != null && mIsBound) {

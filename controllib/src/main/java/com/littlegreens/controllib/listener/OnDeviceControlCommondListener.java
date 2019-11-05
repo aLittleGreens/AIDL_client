@@ -15,16 +15,19 @@ public interface OnDeviceControlCommondListener {
 
     /**
      * 查询门状态
+     * @return 发送是否成功
      */
     boolean queryDoorStatus();
 
     /**
      * 查询温度
+     * @return 发送是否成功
      */
     boolean queryTemperature();
 
     /**
      * APP启动握手指令,查询固件版本
+     * @return 发送是否成功
      */
     boolean queryDeviceVersion();
 }
