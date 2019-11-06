@@ -15,14 +15,6 @@
 
 1. maven依赖方式
 ```Gradle
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
 dependencies {
     implementation 'aidog.littlegreens:controllib:1.0.3'
 }
