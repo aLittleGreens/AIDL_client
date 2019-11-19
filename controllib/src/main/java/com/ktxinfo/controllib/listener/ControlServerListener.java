@@ -1,6 +1,6 @@
-package com.littlegreens.controllib.listener;
+package com.ktxinfo.controllib.listener;
 
-import com.littlegreens.aidl.DeviceBean;
+import com.ktxinfo.aidl.DeviceBean;
 
 /**
  * @author LittleGreens <a href="mailto:alittlegreens@foxmail.com">Contact me.</a>

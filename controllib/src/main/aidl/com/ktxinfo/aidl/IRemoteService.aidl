@@ -1,6 +1,6 @@
 // IRemoteService.aidl
-package com.littlegreens.aidl;
-import com.littlegreens.aidl.IRemoteServiceCallback;
+package com.ktxinfo.aidl;
+import com.ktxinfo.aidl.IRemoteServiceCallback;
 
 // Declare any non-default types here with import statements
 

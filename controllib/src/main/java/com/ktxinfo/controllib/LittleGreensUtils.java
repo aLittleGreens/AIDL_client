@@ -1,4 +1,4 @@
-package com.littlegreens.controllib;
+package com.ktxinfo.controllib;
 
 import android.app.ActivityManager;
 import android.content.Context;

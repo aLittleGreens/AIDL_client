@@ -9,12 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.littlegreens.aidl.DeviceBean;
-import com.littlegreens.controllib.ControlManager;
-import com.littlegreens.controllib.bean.FunctionType;
-import com.littlegreens.controllib.listener.ControlServerListener;
+import com.ktxinfo.aidl.DeviceBean;
+import com.ktxinfo.controllib.ControlManager;
+import com.ktxinfo.controllib.bean.FunctionType;
+import com.ktxinfo.controllib.listener.ControlServerListener;
 
-import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

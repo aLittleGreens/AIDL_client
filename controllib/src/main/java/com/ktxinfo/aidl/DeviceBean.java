@@ -1,9 +1,9 @@
-package com.littlegreens.aidl;
+package com.ktxinfo.aidl;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.littlegreens.controllib.bean.FunctionType;
+import com.ktxinfo.controllib.bean.FunctionType;
 
 
 /**

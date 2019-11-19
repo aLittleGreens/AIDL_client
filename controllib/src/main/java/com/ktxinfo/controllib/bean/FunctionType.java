@@ -1,4 +1,4 @@
-package com.littlegreens.controllib.bean;
+package com.ktxinfo.controllib.bean;
 
 /**
  * @author LittleGreens <a href="mailto:alittlegreens@foxmail.com">Contact me.</a>

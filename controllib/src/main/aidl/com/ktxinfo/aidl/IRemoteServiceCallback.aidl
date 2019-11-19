@@ -1,7 +1,7 @@
 // IRemoteServiceCallback.aidl
-package com.littlegreens.aidl;
+package com.ktxinfo.aidl;
 
-import com.littlegreens.aidl.DeviceBean;
+import com.ktxinfo.aidl.DeviceBean;
 // Declare any non-default types here with import statements
 
 

@@ -1,31 +1,31 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
-
-publish {
-    userOrg = 'littlegreenscai' //bintray账户下某个组织id
-    groupId = 'aidog.littlegreens' //maven仓库下库的包名，一般为模块包名
-    artifactId = 'controllib' //项目名称
-    publishVersion = '1.0.3' //版本号
-    desc = 'this is serial aidl libary' //项目介绍，可以不写
-    website = 'https://github.com/aLittleGreens' //项目主页，可以不写
-    bintrayUser = 'aLittleGreensCai'
-    bintrayKey = 'd9ac3e619c6d0f972ad8a9057feed68a1baaee86'
-    dryRun = false
-}
-
-//apply plugin: 'maven'
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository(url: "https://repo.rdc.aliyun.com/repository/107284-release-4tIOL8/") {
-//                authentication(userName: "pRpUSE", password: "G5MVL0hdiy")
-//            }
-//            pom.version = "1.0.3" // 对应版本号 25.1.0
-//            pom.artifactId = "controllib" // 对应 appcompat-v7
-//            pom.groupId = "aidog.littlegreens" // com.android.support
-//        }
-//    }
+//apply plugin: 'com.novoda.bintray-release'
+//
+//publish {
+//    userOrg = 'littlegreenscai' //bintray账户下某个组织id
+//    groupId = 'aidog.littlegreens' //maven仓库下库的包名，一般为模块包名
+//    artifactId = 'controllib' //项目名称
+//    publishVersion = '1.0.3' //版本号
+//    desc = 'this is serial aidl libary' //项目介绍，可以不写
+//    website = 'https://github.com/aLittleGreens' //项目主页，可以不写
+//    bintrayUser = 'aLittleGreensCai'
+//    bintrayKey = 'd9ac3e619c6d0f972ad8a9057feed68a1baaee86'
+//    dryRun = false
 //}
+
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://repo.rdc.aliyun.com/repository/107284-release-4tIOL8/") {
+                authentication(userName: "pRpUSE", password: "G5MVL0hdiy")
+            }
+            pom.version = "1.0.3" // 对应版本号 25.1.0
+            pom.artifactId = "controllib" // 对应 appcompat-v7
+            pom.groupId = "aidog.ktx" // com.android.support
+        }
+    }
+}
 android {
     compileSdkVersion 23
 

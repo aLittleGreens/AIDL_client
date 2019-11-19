@@ -1,4 +1,4 @@
-package com.littlegreens.controllib;
+package com.ktxinfo.controllib;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,12 +14,13 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.littlegreens.aidl.DeviceBean;
-import com.littlegreens.aidl.IRemoteService;
-import com.littlegreens.aidl.IRemoteServiceCallback;
-import com.littlegreens.controllib.bean.FunctionType;
-import com.littlegreens.controllib.listener.ControlServerListener;
-import com.littlegreens.controllib.listener.OnDeviceControlCommondListener;
+import com.ktxinfo.aidl.DeviceBean;
+import com.ktxinfo.aidl.IRemoteService;
+import com.ktxinfo.aidl.IRemoteServiceCallback;
+import com.ktxinfo.controllib.LittleGreensUtils;
+import com.ktxinfo.controllib.bean.FunctionType;
+import com.ktxinfo.controllib.listener.ControlServerListener;
+import com.ktxinfo.controllib.listener.OnDeviceControlCommondListener;
 
 /**
  * @author LittleGreens <a href="mailto:alittlegreens@foxmail.com">Contact me.</a>
@@ -203,6 +204,7 @@ public class ControlManager implements OnDeviceControlCommondListener {
                 @Override
                 public void run() {
                     LittleGreensUtils.setTopApp(mContext);
+                    Log.e(TAG,"server path:"+IRemoteService.class.getName());
                     Intent intent = new Intent(IRemoteService.class.getName());
                     intent.setPackage(Const.remotePacket);
                     //注意这里的Context.BIND_AUTO_CREATE，这意味这如果在绑定的过程中，

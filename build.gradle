@@ -26,18 +26,18 @@ allprojects {
 
 allprojects {
     repositories {
-//        maven {
-//            url 'https://maven.aliyun.com/repository/public'
-//        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
         google()
         jcenter()
-//        maven {
-//            credentials {
-//                username 'pRpUSE'
-//                password 'G5MVL0hdiy'
-//            }
-//            url 'https://repo.rdc.aliyun.com/repository/107284-release-4tIOL8/'
-//        }
+        maven {
+            credentials {
+                username 'pRpUSE'
+                password 'G5MVL0hdiy'
+            }
+            url 'https://repo.rdc.aliyun.com/repository/107284-release-4tIOL8/'
+        }
         maven { url 'https://dl.bintray.com/littlegreenscai/maven' }
     }
 }
